@@ -1,0 +1,44 @@
+@use 'base';
+
+@mixin backgroundColor($color: base.$eerie-black-color, $opacity: null) {
+  background-color: $color;
+  @if $opacity != null {
+    opacity: $opacity;
+  }
+}
+
+@mixin color($color: base.$eerie-black-color, $opacity: null) {
+  color: $color;
+  @if $opacity != null {
+    opacity: $opacity;
+  }
+}
+
+@mixin flexDirectionJustify(
+  $direction: null,
+  $justify-content: null,
+  $align-items: null
+) {
+  display: flex;
+  @if $direction != null {
+    flex-direction: $direction;
+  }
+  @if $justify-content != null {
+    justify-content: $justify-content;
+  }
+  @if $align-items != null {
+    align-items: $align-items;
+  }
+}
+
+@mixin applyFont($size: null, $weight: null, $height: null) {
+  @if $size != null {
+    font-size: $size;
+  }
+  @if $weight != null {
+    font-weight: $weight;
+  }
+  @if $height != null {
+    line-height: $height;
+  }
+}
