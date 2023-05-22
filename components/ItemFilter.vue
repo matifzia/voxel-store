@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       selectedCategory: 'all',
-      viewportWidth: 0,
+      viewportWidth: 1600,
     }
   },
   computed: {
