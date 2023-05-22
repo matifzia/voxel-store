@@ -9,10 +9,20 @@
     />
     <div class="details">
       <div class="price-description-container">
-        <div class="description">{{ product.title }}</div>
-        <div class="price">${{ product.price }}</div>
+        <div style="height: 4rem">
+          <div class="description">{{ product.title }}</div>
+          <div class="price">${{ product.price | leadingTwo }}</div>
+        </div>
         <button type="button" class="cart-button" @click="addToCart(product)">
-          <img height="24px" width="24px" src="@/assets/images/add.svg" />
+          <img
+            height="24px"
+            width="24px"
+            :src="
+              itemAddedInCart(product.id)
+                ? require('@/assets/images/done.svg')
+                : require('@/assets/images/add.svg')
+            "
+          />
           <div class="caption">Add to Cart</div>
         </button>
       </div>
@@ -21,7 +31,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
   name: 'ItemCard',
   props: {
@@ -29,6 +39,9 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters(['itemAddedInCart']),
   },
   methods: {
     ...mapMutations(['addToCart']),
@@ -45,14 +58,13 @@ export default {
   border: 1px solid rgba(26, 26, 26, 0.1);
   border-radius: 12px;
   max-width: 341px;
-
   .product-img {
     @include flexDirectionJustify(
       $direction: column,
       $justify-content: center,
       $align-items: center
     );
-    padding: 0px;
+    padding: 0 3rem;
   }
 
   .details {
@@ -79,6 +91,10 @@ export default {
       }
       .description {
         font-weight: 600;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
       .price {
         opacity: 0.5;

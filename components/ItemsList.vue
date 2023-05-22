@@ -68,8 +68,8 @@ export default {
 <style lang="scss">
 .items-container {
   @include flexDirectionJustify($justify-content: center);
-  margin-top: 12px;
   overflow-x: auto;
+  padding: 24px 0px 42px;
   .items-list {
     @include flexDirectionJustify($justify-content: center);
     gap: 12px;

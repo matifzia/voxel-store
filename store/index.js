@@ -21,5 +21,6 @@ export default {
   getters: {
     cartItemsCount: (state) => state.cart.length,
     cartItemsSum: (state) => state.cart.reduce((a, b) => a + b.price, 0),
+    itemAddedInCart: (state) => (itemId)=>state.cart.find(res=>res.id===itemId),
   },
 }

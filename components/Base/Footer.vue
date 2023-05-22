@@ -1,8 +1,8 @@
 <template>
   <footer class="footer">
-    <div>
+    <div class="title">
       <span class="project-name-first-part">Voxel</span>
-      <span class="project-name-second-part">Store</span>
+      <span class="title-second-part">Store</span>
     </div>
   </footer>
 </template>
@@ -27,13 +27,13 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
+  border-top: 1px solid rgba(26, 26, 26, 0.1);
 
-  div {
-    .project-name-first-part {
-      font-weight: bold;
-    }
-    .project-name-second-part {
-      opacity: 50%;
+  .title {
+    @include applyFont($size: 18px, $weight: 600, $height: 22px);
+    @include color();
+    .title-second-part {
+      opacity: 0.5;
     }
   }
 }

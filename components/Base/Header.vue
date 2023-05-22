@@ -1,10 +1,10 @@
 <template>
   <header class="header">
-    <div class="left">
+    <div class="title">
       <span class="project-name-first-part">Voxel</span>
-      <span class="project-name-second-part">Store</span>
+      <span class="title-second-part">Store</span>
     </div>
-    <div class="right">
+    <div class="shopping-bag">
       <button class="cart-button" @click="setCartOpen(true)">
         <img src="@/assets/images/bag.svg" alt="Cart" class="cart-image" />
       </button>
@@ -30,17 +30,16 @@ export default {
   padding: 0 4rem;
   height: 64px;
 
-  .left {
+  .title {
+    @include applyFont($size: 18px, $weight: 600, $height: 22px);
+    @include color();
     flex: 1;
-    .project-name-first-part {
-      font-weight: bold;
-    }
-    .project-name-second-part {
-      opacity: 50%;
+    .title-second-part {
+      opacity: 0.5;
     }
   }
 
-  .right {
+  .shopping-bag {
     @include flexDirectionJustify($align-items: center);
     .cart-button {
       @include backgroundColor($color: $transparent-color);
@@ -54,25 +53,25 @@ export default {
     }
   }
 
-  @media (max-width: 992px) {
+  @include tablet-l-width {
     padding: 0 3rem;
 
-    .left,
-    .right {
+    .title,
+    .shopping-bag {
       margin-bottom: 0.5rem;
     }
   }
 
-  @media (max-width: 768px) {
+  @include tablet-p-width {
     padding: 0 2rem;
 
-    .left,
-    .right {
+    .title,
+    .shopping-bag {
       margin-bottom: 0.5rem;
     }
   }
 
-  @media (max-width: 600px) {
+  @include mobile-width {
     padding: 0 1rem;
   }
 }

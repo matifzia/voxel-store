@@ -42,3 +42,22 @@
     line-height: $height;
   }
 }
+
+
+@mixin mobile-width {
+  @media (max-width: #{base.$mobile-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-p-width {
+  @media (max-width: #{base.$tablet-p-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-l-width {
+  @media (max-width: #{base.$tablet-l-width}) {
+    @content;
+  }
+}

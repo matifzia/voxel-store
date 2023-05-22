@@ -61,16 +61,17 @@ export default {
 
   &.open {
     right: 0;
-    @media (max-width: 768px) {
+
+    @include tablet-p-width {
       width: 400px;
     }
 
-    @media (max-width: 600px) {
+    @include mobile-width {
       width: 100%;
+      padding: 20px;
     }
   }
   .content {
-    padding: 1rem;
     width: 100%;
     .title-container {
       @include flexDirectionJustify(
@@ -122,6 +123,7 @@ export default {
         border: #462ddf;
         width: 100%;
         border-radius: 8px;
+        height: 59px;
       }
     }
   }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 Vue.filter('leadingTwo', (value) => {
-  return value && value % 1 !== 0
+  return value 
     ? parseFloat(value.toString()).toFixed(2)
     : value
 })

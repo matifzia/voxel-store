@@ -4,20 +4,20 @@
       <img class="product-img" :src="product.image" />
     </span>
 
-    <div>
+    <div style="width: 100%">
       <div class="product-details">
         <div class="product-title">
           {{ product.title }}
         </div>
       </div>
       <div class="price-details">
-        <div class="price">${{ product.price }}</div>
+        <div class="price">${{ product.price | leadingTwo }}</div>
         <button
           type="button"
           class="remove-button"
           @click="removeFromCart(product.id)"
         >
-          remove
+          Remove
         </button>
       </div>
     </div>
@@ -43,11 +43,9 @@ export default {
 <style lang="scss" scoped>
 .product-description-container {
   @include flexDirectionJustify($align-items: center);
-  padding: 0px;
   gap: 16px;
   width: 100%;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 
   .product-img-container {
     @include flexDirectionJustify(
@@ -55,16 +53,26 @@ export default {
       $align-items: center
     );
     border: 1px solid rgba(26, 26, 26, 0.1);
+    border-radius: 8px;
     height: 102px;
     width: 102px;
     min-width: 102px;
     min-height: 102px;
-  }
-
-  .product-img {
-    object-fit: fill;
-    height: 72px;
-    width: 72px;
+    @include mobile-width {
+      height: 82px;
+      width: 82px;
+      min-width: 82px;
+      min-height: 82px;
+    }
+    .product-img {
+      object-fit: fill;
+      height: 72px;
+      width: 72px;
+      @include mobile-width {
+        height: 50px;
+        width: 50px;
+      }
+    }
   }
 
   .product-details {
