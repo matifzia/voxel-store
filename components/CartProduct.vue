@@ -1,7 +1,11 @@
 <template>
   <div class="product-description-container">
     <span class="product-img-container">
-      <img class="product-img" :src="product.image" />
+      <div
+        alt="Product Image"
+        class="product-img"
+        :style="'background-image:url(' + product.image + ')'"
+      />
     </span>
 
     <div style="width: 100%">
@@ -68,6 +72,9 @@ export default {
       object-fit: fill;
       height: 72px;
       width: 72px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
       @include mobile-width {
         height: 50px;
         width: 50px;

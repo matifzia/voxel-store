@@ -1,11 +1,9 @@
 <template>
   <div class="product">
-    <img
-      :src="product.image"
-      width="293px"
-      height="280px"
+    <div
       alt="Product Image"
       class="product-img"
+      :style="'background-image:url(' + product.image + ')'"
     />
     <div class="details">
       <div class="price-description-container">
@@ -58,13 +56,26 @@ export default {
   border: 1px solid rgba(26, 26, 26, 0.1);
   border-radius: 12px;
   max-width: 341px;
+
   .product-img {
     @include flexDirectionJustify(
       $direction: column,
       $justify-content: center,
       $align-items: center
     );
-    padding: 0 3rem;
+    width: 293px;
+    height: 280px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @include mobile-width {
+    max-width: 320px;
+    max-height: 507px;
+    .product-img {
+      width: 272px;
+    }
   }
 
   .details {

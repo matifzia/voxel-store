@@ -1,10 +1,12 @@
 <template>
-  <dropdown
-    v-if="isMobileView"
-    :options="categoriesWithAll"
-    :selected-option="selectedCategory"
-    @onSelect="onSelectCategory"
-  />
+  <div v-if="isMobileView" class="filter-container">
+    <dropdown
+      :options="categoriesWithAll"
+      :selected-option="selectedCategory"
+      @onSelect="onSelectCategory"
+    />
+  </div>
+
   <div v-else class="filter-container">
     <button
       v-for="(category, i) in categoriesWithAll"
@@ -13,7 +15,9 @@
       :class="{ active: selectedCategory == category }"
       @click="onSelectCategory(category)"
     >
-      {{ category }}
+      <div style="height: 3px"></div>
+      <div>{{ category }}</div>
+      <div :class="{ active: selectedCategory == category }"></div>
     </button>
   </div>
 </template>
@@ -70,6 +74,11 @@ export default {
   border-bottom: 1px solid rgba(26, 26, 26, 0.1);
   padding: 0 7rem;
   height: 64px;
+  @include mobile-width {
+    justify-content: center;
+    padding: 20px 0px;
+    border: none;
+  }
   .category {
     @include color($color: $eerie-black-color, $opacity: 0.5);
     @include backgroundColor($color: $white-color);
@@ -80,16 +89,20 @@ export default {
     );
     @include applyFont($size: 14px, $weight: 600, $height: 17px);
     text-transform: capitalize;
-
+    height: 64px;
     gap: 12px;
-    border-radius: 4px 4px 0px 0px;
-    margin: 0.2rem;
     border: none;
     cursor: pointer;
-    padding-bottom: 3px;
+
     &.active {
       opacity: 1;
-      border-bottom: $eerie-black-color solid 3px;
+    }
+    .active {
+      @include flexDirectionJustify($align-items: flex-start);
+      @include backgroundColor($color: $eerie-black-color);
+      height: 3px;
+      border-radius: 4px 4px 0px 0px;
+      width: 100%;
     }
   }
 }

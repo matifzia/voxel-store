@@ -47,12 +47,19 @@ export default {
   position: relative;
   display: inline-block;
   text-transform: capitalize;
-  width: 100%;
-  padding: 20px;
+  width: 320px;
+  text-transform: capitalize;
+  width: 320px;
+  height: 64px;
+  margin-top: 20px;
 
   .dropdown-toggle {
-    @include flexDirectionJustify($align-items: center,$justify-content: space-between);
+    @include flexDirectionJustify(
+      $align-items: center,
+      $justify-content: space-between
+    );
     @include backgroundColor($color: $white-color);
+    @include applyFont($size: 14px, $weight: 600, $height: 17px);
     padding: 10px;
     cursor: pointer;
     width: 100%;

@@ -7,16 +7,6 @@
   </footer>
 </template>
 
-<script>
-export default {
-  methods: {
-    handleCartClick() {
-      // Handle cart click event
-    },
-  },
-}
-</script>
-
 <style scoped lang="scss">
 .footer {
   @include backgroundColor($color: $white-color);

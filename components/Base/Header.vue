@@ -44,7 +44,6 @@ export default {
     .cart-button {
       @include backgroundColor($color: $transparent-color);
       border: none;
-      padding: 0;
       cursor: pointer;
       .cart-image {
         width: 24px;
@@ -55,20 +54,10 @@ export default {
 
   @include tablet-l-width {
     padding: 0 3rem;
-
-    .title,
-    .shopping-bag {
-      margin-bottom: 0.5rem;
-    }
   }
 
   @include tablet-p-width {
     padding: 0 2rem;
-
-    .title,
-    .shopping-bag {
-      margin-bottom: 0.5rem;
-    }
   }
 
   @include mobile-width {

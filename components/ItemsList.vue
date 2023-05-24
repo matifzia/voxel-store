@@ -2,7 +2,7 @@
   <div v-if="$fetchState.error" class="error">
     {{ $fetchState.error.message }}
   </div>
-  <div v-else>
+  <div v-else class="items-and-category-container">
     <item-filter :categories="categories" @onFilter="filterProducts" />
     <span class="items-container">
       <div class="items-list">
@@ -66,14 +66,22 @@ export default {
 </script>
 
 <style lang="scss">
-.items-container {
-  @include flexDirectionJustify($justify-content: center);
-  overflow-x: auto;
-  padding: 24px 0px 42px;
-  .items-list {
+.items-and-category-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .items-container {
     @include flexDirectionJustify($justify-content: center);
-    gap: 12px;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 24px 0px 42px;
+    .items-list {
+      @include flexDirectionJustify($justify-content: center);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    @include mobile-width {
+      padding: 10px 0;
+    }
   }
 }
 </style>
