@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   css: ['@/assets/css/main.scss', '@/assets/css/fonts.scss'],
 modules: ['@pinia/nuxt'],
   plugins: [
-    '@/plugins'
+    '@/plugins/fetch.ts'
   ],
   components: false, // still valid
   // Instead of axios, recommend using runtimeConfig + $fetch
