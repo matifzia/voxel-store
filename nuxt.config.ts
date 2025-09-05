@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   css: ['@/assets/css/main.scss', '@/assets/css/fonts.scss'],
 modules: ['@pinia/nuxt'],
   plugins: [
-    '@/plugins/filters'
+    '@/plugins'
   ],
   components: false, // still valid
   // Instead of axios, recommend using runtimeConfig + $fetch
@@ -30,6 +30,14 @@ modules: ['@pinia/nuxt'],
   },
   imports: {
     dirs: ['stores'], 
+  },
+  nitro: {
+    storage: {
+      data: {
+        driver: 'vercelKV'
+        /* Vercel KV driver options */
+      }
+    }
   },
   vite: {
     css: {

@@ -13,8 +13,8 @@
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "dependencies": {
-    "@nuxtjs/vercel-builder": "^0.24.0",
     "@pinia/nuxt": "^0.11.2",
+    "@vercel/kv": "^3.0.0",
     "core-js": "^3.25.3",
     "pinia": "^3.0.3"
   },
