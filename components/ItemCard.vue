@@ -9,7 +9,7 @@
       <div class="price-description-container">
         <div style="height: 4rem">
           <div class="description">{{ product.title }}</div>
-          <div class="price">${{ product.price | leadingTwo }}</div>
+          <div class="price">${{ leadingTwo(product.price) }}</div>
         </div>
         <button type="button" class="cart-button" @click="addToCart(product)">
           <img
@@ -28,22 +28,26 @@
   </div>
 </template>
 
-<script>
-import { mapMutations, mapGetters } from 'vuex'
-export default {
-  name: 'ItemCard',
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useProductsStore } from '~/store/products'
+
+// props
+defineProps({
+  product: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    ...mapGetters(['itemAddedInCart']),
-  },
-  methods: {
-    ...mapMutations(['addToCart']),
-  },
+})
+
+// store
+const cartStore = useProductsStore()
+const { itemAddedInCart } = storeToRefs(cartStore)
+const { addToCart } = cartStore
+
+// helper
+function leadingTwo(value: number) {
+  return value.toFixed(2)
 }
 </script>
 
@@ -95,11 +99,13 @@ export default {
       );
       gap: 6px;
       width: 100%;
+
       .description,
       .price {
         @include color($color: $eerie-black-color);
         @include applyFont($size: 16px, $height: 20px);
       }
+
       .description {
         font-weight: 600;
         display: -webkit-box;
@@ -107,6 +113,7 @@ export default {
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
+
       .price {
         opacity: 0.5;
         font-weight: 500;

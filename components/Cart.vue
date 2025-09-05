@@ -11,15 +11,17 @@
           @click="setCartOpen(false)"
         />
       </div>
+
       <cart-product
         v-for="(product, i) in cart"
         :key="'prd_' + i"
         :product="product"
       />
+
       <div class="total-container">
         <div class="total">
           <div class="total-text">Total</div>
-          <div class="total-text">${{ cartItemsSum | leadingTwo }}</div>
+          <div class="total-text">${{ leadingTwo(cartItemsSum) }}</div>
         </div>
         <button class="checkout-button">Continue to Checkout</button>
       </div>
@@ -27,20 +29,20 @@
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import CartProduct from './CartProduct.vue'
-export default {
-  components: {
-    CartProduct,
-  },
-  computed: {
-    ...mapState(['cartIsOpen', 'cart']),
-    ...mapGetters(['cartItemsCount', 'cartItemsSum']),
-  },
-  methods: {
-    ...mapMutations(['setCartOpen']),
-  },
+import { useProductsStore } from '~/store/products'
+
+// access store
+const cartStore = useProductsStore()
+const { cartIsOpen, cart, cartItemsCount, cartItemsSum } =
+  storeToRefs(cartStore)
+const { setCartOpen } = cartStore
+
+// old Vue filter replacement
+function leadingTwo(value: number) {
+  return value.toFixed(2)
 }
 </script>
 
@@ -71,8 +73,10 @@ export default {
       padding: 20px;
     }
   }
+
   .content {
     width: 100%;
+
     .title-container {
       @include flexDirectionJustify(
         $justify-content: space-between,
@@ -82,9 +86,11 @@ export default {
       gap: 24px;
       height: 56px;
       border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+
       .title {
         @include applyFont($size: 22px, $weight: 600, $height: 27px);
       }
+
       .close {
         rotate: (45deg);
         cursor: pointer;
@@ -96,6 +102,7 @@ export default {
         $direction: column,
         $align-items: flex-start
       );
+
       .total {
         @include flexDirectionJustify(
           $justify-content: space-between,
@@ -106,10 +113,12 @@ export default {
         gap: 24px;
         border-top: 1px solid rgba(26, 26, 26, 0.1);
         width: 100%;
+
         .total-text {
           @include applyFont($size: 22px, $weight: 600, $height: 27px);
         }
       }
+
       .checkout-button {
         @include color($color: $white-color);
         @include flexDirectionJustify(

@@ -19,7 +19,7 @@
         <button
           type="button"
           class="remove-button"
-          @click="removeFromCart(product.id)"
+          @click="cart.removeFromCart(product.id)"
         >
           Remove
         </button>
@@ -28,22 +28,19 @@
   </div>
 </template>
 
-<script>
-import { mapMutations } from 'vuex'
-export default {
-  name: 'CartProducts',
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    ...mapMutations(['removeFromCart']),
-  },
-}
-</script>
+<script setup>
+import { useProductsStore } from '~/store/products';
 
+
+const cart = useProductsStore()
+
+defineProps({
+  product: {
+    type: Object,
+    required: true,
+  },
+})
+</script>
 <style lang="scss" scoped>
 .product-description-container {
   @include flexDirectionJustify($align-items: center);

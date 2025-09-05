@@ -2,7 +2,7 @@
   <main>
     <base-header />
     <hero />
-    <nuxt />
+    <NuxtPage />
     <base-footer />
   </main>
 </template>

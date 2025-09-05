@@ -5,20 +5,17 @@
       <span class="title-second-part">Store</span>
     </div>
     <div class="shopping-bag">
-      <button class="cart-button" @click="setCartOpen(true)">
+      <button class="cart-button" @click="cart.setCartOpen(true)">
         <img src="@/assets/images/bag.svg" alt="Cart" class="cart-image" />
       </button>
     </div>
   </header>
 </template>
 
-<script>
-import { mapMutations } from 'vuex'
-export default {
-  methods: {
-    ...mapMutations(['setCartOpen']),
-  },
-}
+<script setup>
+import { useProductsStore } from '~/store/products';
+
+const cart = useProductsStore()
 </script>
 
 <style scoped lang="scss">
